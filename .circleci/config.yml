@@ -13,6 +13,14 @@ jobs:
       - run:
           name: "Say hi"
           command: echo $first_name
+  print_lastname:
+    docker:
+      - image: circleci/node:13.8.0 
+    steps:
+      - checkout
+      - run:
+          name: "lastname"
+          command: echo $last_name
   print_hello:
     docker:
       - image: circleci/node:13.8.0 
@@ -33,6 +41,9 @@ workflows:
   say-hello-workflow:
     jobs:
       - print_name
+      - print_lastname:
+           requires:
+             - print_name
       - print_hello
       - print_world:
            requires:
