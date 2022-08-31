@@ -11,26 +11,12 @@ jobs:
     steps:
       - checkout
       - run:
-<<<<<<< HEAD
           echo "hello world" > ~/output.txt
       - persist_to_workspace:
           root: ~/
           paths:
             - output.txt
   print_output_file:
-=======
-          name: "Say hi"
-          command: echo $first_name
-  print_lastname:
-    docker:
-      - image: circleci/node:13.8.0 
-    steps:
-      - checkout
-      - run:
-          name: "lastname"
-          command: echo $last_name
-  print_hello:
->>>>>>> 24a2513aafb28e18ccef8f77fe11963d7832e054
     docker:
       - image: circleci/node:13.8.0 
     steps:
@@ -41,16 +27,7 @@ jobs:
 workflows:
   say-hello-workflow:
     jobs:
-<<<<<<< HEAD
       - save_hello_world_output
       - print_output_file:
-=======
-      - print_name
-      - print_lastname:
-           requires:
-             - print_name
-      - print_hello
-      - print_world:
->>>>>>> 24a2513aafb28e18ccef8f77fe11963d7832e054
            requires:
              - save_hello_world_output
