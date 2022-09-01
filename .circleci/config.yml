@@ -1,7 +1,9 @@
 # Use the latest 2.1 version of CircleCI pipeline process engine.
 # See: https://circleci.com/docs/2.0/configuration-reference
 version: 2.1
-
+contain: &contain
+  docker:
+   - image: circleci/node:13.8.0 
 commands:
   print_pipeline_id:
      steps:
@@ -9,8 +11,7 @@ commands:
 
 jobs:
   save_hello_world_output:
-    docker:
-      - image: circleci/node:13.8.0 
+    <<: *contain
     steps:
       - checkout
       - print_pipeline_id
@@ -21,14 +22,21 @@ jobs:
           paths:
             - output.txt
   print_output_file:
-    docker:
-      - image: circleci/node:13.8.0 
+    <<: *contain
     steps:
       - attach_workspace:
           at: ~/
       - run:
           cat ~/output.txt
-workflows:
+  fail_job:
+    <<: *contain
+    steps: 
+      - run: echo "who run the
+      - run: 
+          name: error1
+          command: echo "Here's an error"
+          when: on_fail 
+    workflows:
   say-hello-workflow:
     jobs:
       - save_hello_world_output
