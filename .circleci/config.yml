@@ -31,7 +31,7 @@ jobs:
   fail_job:
     <<: *contain
     steps: 
-      - run: echo "who run the
+      - run: echo "who run the world"
       - run: 
           name: error1
           command: echo "Here's an error"
