@@ -33,10 +33,7 @@ jobs:
     <<: *defaults
     steps: 
       - run: echo "who run the world"
-      - run: 
-          name: error1
-          command: echo "Here an error"
-          when: on_fail 
+      
 
   workflows:
   say-hello-workflow:
